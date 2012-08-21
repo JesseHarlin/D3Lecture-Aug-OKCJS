@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/0_reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/grid.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/headerAnimate.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="syntaxhighlighter_3.0.83/scripts/shCore.js"> </script>
+
+    <script type="text/javascript" src="syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"> </script>
+
+    <script src="syntaxhighlighter_3.0.83/scripts/shBrushXml.js" type="text/javascript"> </script>
+
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter_3.0.83/styles/shCoreDefault.css" />
+
+    <script src="js/knockout-2.1.0.js" type="text/javascript"></script>
+
+    <script src="js/jquery-1.7.2.min.js" type="text/javascript"> </script>
+
+    <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"> </script>
+
+    <script src="js/d3.v2.min.js" type="text/javascript"> </script>
+
+    <script src="js/createSyntaxHighlightedScripts.js" type="text/javascript"> </script>
+
+    <title>D3. Talk</title>
+</head>
+<body>
+    <div class="container_12">
+        <div class="grid_12 alpha omega">
+            <div class="grid_12">
+                <h1>D3 [Data Driven Documents]</h1>
+            </div>
+            <div class="grid_12">
+                <br />
+                <hr style="width: 25%; margin-left: 5%" />
+            </div>
+            <div class="grid_12">
+                <h2>Basic Elements - Shapes 2</h2>
+            </div>
+            <div class="grid_6 alpha">
+                <div id="workspace" class="grid_12 alpha omega display ui-corner-all">
+                </div>
+            </div>
+            <div id="codespace" class="grid_6 omega code">
+                <div class="grid_12 alpha omega">
+                    <h3>SVG Version</h3>
+                </div>
+                <style>
+                    .brush_xml .syntaxhighlighter { max-height: 200px; }
+                </style>
+                <div class="grid_12 alpha omega brush_xml">
+                    <pre class="brush:xml">
+                    <!--Line-->
+                    <line x1="0" y1="25" x2="150" y2="350" stroke-width="5" stroke="green"></line>
+                    
+                    <!--polyline-->
+                    <polyline points="20,30 20,150 60,70 180,90 250,220" stroke="green" fill="yellow"></polyline>
+                    
+                    <!--polygon-->
+                    <polygon points="120,130 120,250 160,170 280,190 350,320" stroke="green" fill="pink"></polygon>
+
+                    </pre>
+                </div>
+                <div class="grid_12 alpha omega">
+                    <h3>D3 Version</h3>
+                </div>
+                <div>
+
+                    <script>
+                        var $container = $('#workspace');
+                        var $containerWidth = $container.width();
+                        var $containerHeight = $container.height();
+                        var D3container = d3
+                                .select("#workspace")
+                                .append("svg:svg");
+                        D3container.attr("width", $containerWidth);
+                        D3container.attr("height", $containerHeight);
+                    </script>
+
+                </div>
+                <div class="grid_12 alpha omega brush_js">
+
+                    <script>
+                        //line
+                        D3container
+                                .append("svg:line")
+                                .attr("x1", 0)
+                                .attr("y1", 25)
+                                .attr("x2", 150)
+                                .attr("y2", 350)
+                                .attr("stroke-width", 5)
+                                .attr("stroke", "green");
+
+                        //polyline [use path.]
+                        //Note: in D3, it is typically more convenient 
+                        //and flexible to use the d3.svg.line path generator 
+                        //in conjunction with a path element.
+                        D3container
+                            .append("svg:polyline")
+                            .attr("points", "20,30 20,150 60,70 180,90 250,220")
+                            .attr("stroke", "green")
+                            .attr("fill", "yellow");
+
+                        //polygon
+                        D3container
+                            .append("svg:polygon")
+                            .attr("points", "120,130 120,250 160,170 280,190 350,320")
+                            .attr("stroke", "green")
+                            .attr("fill", "pink");
+
+                    </script>
+
+                    <style>
+                        .script_container .syntaxhighlighter { max-height: 400px; }
+                    </style>
+                    <div class="script_container">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

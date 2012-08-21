@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/0_reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/grid.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/headerAnimate.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="syntaxhighlighter_3.0.83/scripts/shCore.js"> </script>
+
+    <script type="text/javascript" src="syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"> </script>
+
+    <script src="syntaxhighlighter_3.0.83/scripts/shBrushXml.js" type="text/javascript"> </script>
+
+    <script src="syntaxhighlighter_3.0.83/scripts/shBrushCss.js" type="text/javascript"></script>
+
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter_3.0.83/styles/shCoreDefault.css" />
+
+    <script src="js/knockout-2.1.0.js" type="text/javascript"></script>
+
+    <script src="js/jquery-1.7.2.min.js" type="text/javascript"> </script>
+
+    <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"> </script>
+
+    <script src="js/d3.v2.min.js" type="text/javascript"> </script>
+
+    <script src="js/createSyntaxHighlightedScripts.js" type="text/javascript"> </script>
+
+    <title>D3. Talk</title>
+</head>
+<body>
+    <div class="container_12">
+        <div class="grid_12 alpha omega">
+            <div class="grid_12">
+                <h1>D3 [Data Driven Documents]</h1>
+            </div>
+            <div class="grid_12">
+                <br />
+                <hr style="width: 25%; margin-left: 5%" />
+            </div>
+            <div class="grid_12">
+                <h2>Basic Elements - Groups [transformation!]</h2>
+            </div>
+            <div class="grid_6 alpha">
+                <div id="workspace" class="grid_12 alpha omega display ui-corner-all">
+                </div>
+            </div>
+            <div id="codespace" class="grid_6 omega code">
+                <div class="grid_12 alpha omega">
+                    <h3>SVG Version</h3>
+                </div>
+                <style>
+                    .brush_css .syntaxhighlighter { max-height: 200px; }
+                </style>
+                <div class="grid_12 alpha omega brush_css">
+                    <div class="style_container">
+                    </div>
+                </div>
+                <div class="grid_12 alpha omega">
+                    <h3>D3 Version</h3>
+                </div>
+                <div>
+
+                    <script>
+                        var $container = $('#workspace');
+                        var $containerWidth = $container.width();
+                        var $containerHeight = $container.height();
+                        var D3container = d3
+                            .select("#workspace")
+                            .append("svg:svg");
+                        D3container.attr("width", $containerWidth);
+                        D3container.attr("height", $containerHeight);
+                    </script>
+
+                </div>
+                <div class="grid_12 alpha omega brush_js">
+
+                    <script>
+                        var g1 = D3container
+                            .append("svg:g")
+                            .attr("stroke", "green")
+                            .attr("stroke-width", 2)
+                            .attr("fill", "orange");
+
+                        var circle_g1 = g1
+                            .append("svg:circle")
+                            .attr("cx", $containerWidth/4)
+                            .attr("cy", $containerWidth / 4)
+                            .attr("r", 40);
+
+                        var rect_g1 = g1
+                            .append("svg:rect")
+                            .attr("x", $containerWidth / 4)
+                            .attr("y", $containerWidth / 4)
+                            .attr("width", 50)
+                            .attr("height", 50);
+
+                        var text_g1 = g1
+                            .append("svg:text")
+                            .attr("x", $containerWidth / 4)
+                            .attr("y", $containerWidth / 4)
+                            .text("group 1")
+                            .style("font-size", "150%");
+
+                        //now I can transform the group!
+                        g1.attr("transform", "rotate(20) skewX(20) skewY(5)");
+
+                    </script>
+
+                    <style>
+                        .script_container .syntaxhighlighter { max-height: 400px; }
+                    </style>
+                    <div class="script_container">
+                    </div>
+                </div>
+                <div class="grid_12">
+                   
+                    <div id="mySlider_rotate">
+                    </div>
+                    <br/>
+                    <div id="mySlider_skew_x">
+                    </div>
+                     <br/>
+                    <div id="myslider_skew_y">
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            function updateGroup() {
+                                var rotAmt = -1*$("#mySlider_rotate").slider("value");
+                                var skew_x = $("#mySlider_skew_x").slider("value");
+                                var skew_y = $("#myslider_skew_y").slider("value");
+                                g1.attr("transform", "rotate("+rotAmt+") skewX("+skew_x+") skewY("+skew_y+")");
+                            }
+                            $("#mySlider_rotate").slider({
+                                slide: updateGroup
+                            });
+                            $("#mySlider_skew_x").slider({
+                                slide: updateGroup
+                            });
+                            $("#myslider_skew_y").slider({
+                                slide: updateGroup
+                            });
+                        });
+
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

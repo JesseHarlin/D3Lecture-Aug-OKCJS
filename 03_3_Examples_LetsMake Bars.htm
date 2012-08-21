@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/0_reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/grid.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/headerAnimate.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="syntaxhighlighter_3.0.83/scripts/shCore.js"> </script>
+
+    <script type="text/javascript" src="syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"> </script>
+
+    <script src="syntaxhighlighter_3.0.83/scripts/shBrushXml.js" type="text/javascript"> </script>
+
+    <script src="syntaxhighlighter_3.0.83/scripts/shBrushCss.js" type="text/javascript"></script>
+
+    <link type="text/css" rel="stylesheet" href="syntaxhighlighter_3.0.83/styles/shCoreDefault.css" />
+
+    <script src="js/knockout-2.1.0.js" type="text/javascript"></script>
+
+    <script src="js/jquery-1.7.2.min.js" type="text/javascript"> </script>
+
+    <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"> </script>
+
+    <script src="js/d3.v2.min.js" type="text/javascript"> </script>
+
+    <script src="js/createSyntaxHighlightedScripts.js" type="text/javascript"> </script>
+
+    <title>D3. Talk</title>
+</head>
+<body>
+    <div class="container_12">
+        <div class="grid_12 alpha omega">
+            <div class="grid_12">
+                <h1>D3 [Data Driven Documents]</h1>
+            </div>
+            <div class="grid_12">
+                <br />
+                <hr style="width: 25%; margin-left: 5%" />
+            </div>
+            <div class="grid_12">
+                <h2>Example - Ehmergherd, Lerts merk serm Buurrrrssss</h2>
+            </div>
+            <div class="grid_6 alpha">
+                <div id="workspace" class="grid_12 alpha omega display ui-corner-all">
+                </div>
+            </div>
+            <div id="codespace" class="grid_6 omega code">
+                <div class="grid_12 alpha omega">
+                    <h3>Code</h3>
+                </div>
+                <div>
+
+                    <script>
+                        //data generator
+                        var t = 0; //time counts up.
+                        var v = 0; //start value
+                        var numberofDataPoints = 35;
+                        var updateSpeed = 1000; //how fast we want to update
+                        var data = d3.range(numberofDataPoints).map(generateJSONPiece); //this initializes mah data! cool!
+                        function generateJSONPiece() {
+                            return {
+                                time: ++t, //time always counting up
+                                value: v = ~~Math.max(10, Math.min(90, v + 100 * (Math.random() - 0.5))) //random number
+                            };
+                        }
+                        setInterval(function () {
+                            data.shift();
+                            data.push(generateJSONPiece());
+                            redraw();
+                        }, updateSpeed);
+
+                        var $container = $('#workspace');
+                        var $containerWidth = $container.width();
+                        var $containerHeight = $container.height();
+                        var D3container = d3
+                            .select("#workspace")
+                            .append("svg:svg");
+                        D3container.attr("width", $containerWidth);
+                        D3container.attr("height", $containerHeight);
+
+                        
+                    </script>
+
+                </div>
+                <div class="grid_12 alpha omega brush_js">
+
+                    <script>
+                        //ELSEWHERE...
+                        //data is being generated, redraw is being called on refresh...
+                        //the Viewport is intialized.
+                        //my scales are made.
+
+                        //now for the meat and potatoes.
+                        //we start out with a bunch of data, right? 35 bars. so of course the first thignw e do...
+                        // is go ahead and get that on the canvas, first.
+
+                        //how wide is a bar? our canvas divided by number of data.
+                        var barWidth = Math.floor($containerWidth / numberofDataPoints);
+
+                        var xScale = d3.scale.linear()
+                            .domain([0, numberofDataPoints])    //domain is your incoming data..
+                            .range([0, $containerWidth]); //and it gets scaled to this range!.
+
+                        var yScale = d3.scale.linear()
+                            .domain([0, 100])
+                            .rangeRound([0, $containerHeight]); //rounding can preven aliasing on the y-axis.
+
+                        function init() {
+                            //enter
+                            D3container.selectAll("rect").data(data).enter()
+                            //update
+                                .append("rect")
+                                .attr("x", function (d, i) {
+                                    return xScale(i);
+                                })
+                                .attr("y", function (d, i) {
+                                    return 0;
+                                })
+                                .attr("width", barWidth)
+                                .attr("height", function (d, i) {
+                                    return yScale(d.value);
+                                })
+                                .attr("stroke", "White")
+                                .attr("fill", "Orange")
+                                ;
+                            } 
+                        //hey thats cool! oh wait my stuff is upside down.
+                        function redraw() {
+                           
+                        }
+                        init();
+                    </script>
+
+                    <style>
+                        .script_container .syntaxhighlighter { max-height: 600px; }
+                    </style>
+                    <div class="script_container">
+                    </div>
+                </div>
+         
+
+                    <script>
+                       
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
