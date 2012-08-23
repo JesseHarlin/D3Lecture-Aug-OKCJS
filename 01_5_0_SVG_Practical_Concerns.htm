@@ -6,24 +6,16 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet" type="text/css" />
     <link href="css/headerAnimate.css" rel="stylesheet" type="text/css" />
-
     <script type="text/javascript" src="syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
-
     <script type="text/javascript" src="syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
-
     <link type="text/css" rel="stylesheet" href="syntaxhighlighter_3.0.83/styles/shCoreDefault.css" />
-
-    
-
+    <script src="js/underscore.js" type="text/javascript"></script>
     <script src="js/knockout-2.1.0.js" type="text/javascript"></script>
     <script src="js/jquery-1.7.2.min.js" type="text/javascript"> </script>
-
     <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"> </script>
-
     <script src="js/d3.v2.min.js" type="text/javascript"> </script>
-
+    <script src="js/makeMenu.js" type="text/javascript"></script>
     <title>D3. Talk</title>
-
     <script>
 
         $(document).ready(function () {
@@ -36,21 +28,26 @@
     <div class="container_12">
         <div class="grid_12 alpha omega">
             <div class="grid_12">
-                <h1>D3 [Data Driven Documents]</h1>
+                <h1>
+                    D3 [Data Driven Documents]</h1>
             </div>
             <div class="grid_12">
                 <br />
                 <hr style="width: 25%; margin-left: 5%" />
             </div>
             <div class="grid_12">
-                <h2>Jesse Harlin - OKC.js</h2>
+                <h2>
+                    Jesse Harlin - OKC.js</h2>
             </div>
-            <div class="grid_8 alpha display ui-corner-all">
-            </div>
-            <div class="grid_4 omega code">
-                <pre class="brush: js;">
-                     alert("hawtsauce");
-                </pre>
+            <div class="grid_12 alpha omega display ui-corner-all">
+                <ul>
+                    <li>The jquery selecots and d3 selectors are different ecosystems.</li>
+                    <li>Coordinate space, 0,0 is top left</li>
+                    <li>IE8 needs a polyfille -use the google svg polyfill [code.google.com/svgweb]</li>
+                    <li>Cant use css3 gradients for fill.. you use the def tag (not covered in this talk)</li>
+                    <li>There special effects! ex: <a href="http://bl.ocks.org/1342359">Gaussian Blur</a></li>
+                    <li>There images, too but us them sparingly.</li>
+                </ul>
             </div>
         </div>
     </div>

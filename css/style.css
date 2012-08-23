@@ -144,17 +144,29 @@ p { }
 
     
 }
-
+.themenuicon
+{
+    float:right;
+    position:fixed;
+    top:10px;
+    right:10px;
+    
+    }
 #menu_list{
 
 
     position: absolute;
-    top: 48px;
-    right: 52px;
+    top: 58px;
+    right: 60px;
     float: right;
     display: block;
-    background-color: gray;
-    max-height: 780;
+    background-color:#FFF;
+    opacity:0.8;
+    max-height: 600px;
+    z-index:9999;
+    overflow:auto;
+    -webkit-transition: "opacity 1200ms, top 800ms";
+    
 }
 
 #menu_list li {
